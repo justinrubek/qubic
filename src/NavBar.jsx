@@ -1,4 +1,6 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
 import style from "./navbar.css";
 
 export default class NavBar extends React.Component {
@@ -9,10 +11,17 @@ export default class NavBar extends React.Component {
   render() {
     const { items } = this.props;
 
-    let links = items.map(text => {
+    let links = items.map(item => {
+      let link = item.link;
+      let text = item.text;
+
+      let exact = item.exact;
+
       return (
         <li>
-          <a href="#">{text}</a>
+          <NavLink exact={exact} to={link} activeClassName={style.active}>
+            {text}
+          </NavLink>
         </li>
       );
     });

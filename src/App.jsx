@@ -1,8 +1,11 @@
 import React from "react";
+import { Route, HashRouter } from "react-router-dom";
 
 import styles from "./app.css";
 
 import NavBar from "./NavBar";
+import Home from "./Home";
+import GalleryView from "./GalleryView";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,13 +13,29 @@ export default class App extends React.Component {
   }
 
   render() {
+    let navItems = [
+      {
+        text: "Home",
+        link: "/",
+        exact: true
+      },
+      {
+        text: "Gallery",
+        link: "/gallery"
+      }
+    ];
+
     return (
-      <div className={styles.app}>
-        <h1>Qube: qq</h1>
-        <NavBar items={["Home", "Gallery"]} />
-        <h1>Enter the realm of the qube</h1>
-        <p> Hello, World! </p>
-      </div>
+      <HashRouter>
+        <div className={styles.app}>
+          <h1>Qube: qq</h1>
+          <NavBar items={navItems} />
+          <div className="content">
+            <Route exact path="/" component={Home} />
+            <Route path="/gallery" component={GalleryView} />
+          </div>
+        </div>
+      </HashRouter>
     );
   }
 }
