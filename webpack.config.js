@@ -28,7 +28,7 @@ const config = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '[name]_[local]_[hash:base64]',
+              localIdentName: '[name]_[local]_[hash:base64:5]',
               sourceMap: true,
               minimize: true
             }
