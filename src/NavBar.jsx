@@ -1,16 +1,18 @@
 import React from "react";
-import styles from "./app.css";
 
-export default class App extends React.Component {
+export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    let items = ["Home", "Gallery"]
+
+
     return (
-      <div className={styles.app}>
+      <nav>
         <p> Hello, World! </p>
-      </div>
+      </nav>
     );
   }
 }
