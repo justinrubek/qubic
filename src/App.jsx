@@ -7,6 +7,7 @@ import styles from "./css/app.css";
 import NavBar from "./NavBar";
 import Home from "./Home";
 import Posts from "./Posts";
+import Create from "./Create";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,8 +16,6 @@ export default class App extends React.Component {
 
   setBodyClassName() {
     var orig = document.body.className;
-    console.log("pizza");
-    console.log(orig);
     document.body.className = orig + (orig ? " " : "") + styles.body;
   }
 
@@ -45,6 +44,7 @@ export default class App extends React.Component {
           <div className={common_styles.content}>
             <Route exact path="/" component={Home} />
             <Route path="/posts" component={Posts} />
+            <Route path="/create" component={Create} />
           </div>
         </div>
       </HashRouter>

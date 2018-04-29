@@ -1,11 +1,13 @@
 import React from "react";
+import moment from "moment";
+import ReactMarkdown from "react-markdown";
 
 function generatePost(postId) {
   return {
     title: "Post " + postId,
-    content: "I made this. You made this? I made this.",
+    content: "# I made this.\n\n You made this? I made this.",
     author: "Justin Rubek",
-    datePosted: "today"
+    datePosted: new Date().toISOString()
   };
 }
 
@@ -38,9 +40,9 @@ export default class PostsView extends React.Component {
       <div>
         <h1>{post.title}</h1>
         <p>
-          Posted {post.datePosted} by {post.author}
+          Posted {moment(post.datePosted).format("D MMM YY")} by {post.author}
         </p>
-        <p>{post.content}</p>
+        <ReactMarkdown source={post.content} />
       </div>
     );
   }

@@ -1,8 +1,8 @@
-.app p {
+.app p, label {
   color: #BDBDBD;
 }
 
-.app h1 {
+.app h1, h2, h3, h4 {
   color: #09F;
 }
 
@@ -10,3 +10,48 @@
   background-color: #101010;
 }
 
+.app label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-size: 1.5rem;
+  padding: 5px 10px;
+}
+
+.app input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  resize: vertical;
+  background-color: #1d1d1d;
+}
+
+.app textarea {
+  height: 280px;
+}
+
+.app input[type=text]:focus, textarea:focus {
+  border: 1px solid #555;
+}
+
+.app input[type=submit] {
+  background-color: #09F;
+  color: #BDBDBD;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  transition: background-color 1s ease;
+  font-weight: bold;
+}
+
+.app input[type=submit]:hover {
+  background-color: #07D;
+}
+
+.app select {
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+} 
