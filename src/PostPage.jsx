@@ -9,6 +9,13 @@ function generatePost(postId) {
   };
 }
 
+// For now, we assume that each post has four properties
+// title, content, author, and datePosted
+// title and author being a string
+// content being a string representing markdown to be rendered
+// and datePosted being the datetime the post was created
+// In the future, maybe there could be different types of posts
+// as well as having a post created but not published
 export default class PostsView extends React.Component {
   constructor(props) {
     super(props);

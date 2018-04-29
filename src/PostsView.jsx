@@ -2,11 +2,19 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-var i = 0;
-function generatePost() {
+function generatePosts(amount) {
+  const posts = [];
+  for (let i = 0; i < amount; i++) {
+    posts.push(generatePost(i));
+  }
+
+  return posts;
+}
+
+function generatePost(id) {
   return {
-    id: i,
-    title: "Post " + i++
+    id: id,
+    title: "Post " + id
   };
 }
 
@@ -17,7 +25,7 @@ export default class PostsView extends React.Component {
     // Do API call for posts
 
     this.state = {
-      posts: [generatePost(), generatePost()]
+      posts: generatePosts(10)
     };
   }
 
