@@ -1,15 +1,27 @@
 import React from "react";
 import { Route, HashRouter } from "react-router-dom";
 
-import styles from "./app.css";
+import common_styles from "./css/common.css";
+import styles from "./css/app.css";
 
 import NavBar from "./NavBar";
 import Home from "./Home";
-import GalleryView from "./GalleryView";
+import Posts from "./Posts";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  setBodyClassName() {
+    var orig = document.body.className;
+    console.log("pizza");
+    console.log(orig);
+    document.body.className = orig + (orig ? " " : "") + styles.body;
+  }
+
+  componentDidMount() {
+    this.setBodyClassName();
   }
 
   render() {
@@ -20,8 +32,8 @@ export default class App extends React.Component {
         exact: true
       },
       {
-        text: "Gallery",
-        link: "/gallery"
+        text: "Posts",
+        link: "/posts"
       }
     ];
 
@@ -30,9 +42,9 @@ export default class App extends React.Component {
         <div className={styles.app}>
           <h1>Qube: qq</h1>
           <NavBar items={navItems} />
-          <div className="content">
+          <div className={common_styles.content}>
             <Route exact path="/" component={Home} />
-            <Route path="/gallery" component={GalleryView} />
+            <Route path="/posts" component={Posts} />
           </div>
         </div>
       </HashRouter>
