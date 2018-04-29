@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 function generatePost(postId) {
   return {
@@ -26,7 +27,8 @@ export default class PostCreate extends React.Component {
         content: "",
         author: "",
         datePosted: undefined
-      }
+      },
+      redirect: false
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -50,6 +52,9 @@ export default class PostCreate extends React.Component {
     console.log("Attempting to create a new post.");
     console.log("Post contents: ");
     console.log(newPost);
+
+    // Get url of new post and push to history
+    this.setState({ redirect: true });
   }
 
   handleTitleChange(event) {
@@ -80,7 +85,11 @@ export default class PostCreate extends React.Component {
   }
 
   render() {
-    const { post } = this.state;
+    const { post, redirect } = this.state;
+
+    if (redirect === true) {
+      return <Redirect to="/posts" />;
+    }
 
     return (
       <div>
@@ -106,7 +115,7 @@ export default class PostCreate extends React.Component {
             onChange={this.handleContentChange}
             id="content"
           />
-          <input type="submit" value="Create Post" onClick={this.createPost} />
+          <button onClick={this.createPost}>Create Post</button>
         </div>
       </div>
     );

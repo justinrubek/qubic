@@ -37,8 +37,16 @@ export default class PostsView extends React.Component {
 
   render() {
     const { posts } = this.state;
+    let topbar = (
+      <div>
+        <Link to="/create/post">
+          <button type="button">New Post</button>
+        </Link>
+        <h2>Previous posts:</h2>
+      </div>
+    );
 
-    let postCards = posts.map(post => {
+    let cards = posts.map(post => {
       let routeTo = "/posts/" + post.id;
       return (
         <div className={card_styles.card} key={post.id + post.datePublished}>
@@ -57,6 +65,12 @@ export default class PostsView extends React.Component {
         </div>
       );
     });
-    return <div className={style.container}>{postCards}</div>;
+
+    return (
+      <div>
+        {topbar}
+        <div className={style.container}>{cards}</div>
+      </div>
+    );
   }
 }

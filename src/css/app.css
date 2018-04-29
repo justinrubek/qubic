@@ -34,19 +34,18 @@
   border: 1px solid #555;
 }
 
-.app input[type=submit] {
+.app button {
   background-color: #09F;
   color: #BDBDBD;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  float: right;
   transition: background-color 1s ease;
   font-weight: bold;
 }
 
-.app input[type=submit]:hover {
+.app button:hover {
   background-color: #07D;
 }
 
