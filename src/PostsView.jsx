@@ -42,8 +42,12 @@ export default class PostsView extends React.Component {
       let routeTo = "/posts/" + post.id;
       return (
         <div className={card_styles.card} key={post.id + post.datePublished}>
-          <img src={post.image} alt={"Post by " + post.author} />
-          <div>
+          <img
+            src={post.image}
+            alt={"Post by " + post.author}
+            className={card_styles.thumbnail}
+          />
+          <div className={card_styles.container}>
             <Link className={card_styles.title} to={routeTo}>
               {post.title}
             </Link>

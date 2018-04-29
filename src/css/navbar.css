@@ -18,10 +18,6 @@
   display: inline-block;
 }
 
-.navbar a:hover {
-  color: #800000;
-}
-
 .active {
   background-color: #0099FF;
 }
