@@ -1,8 +1,12 @@
 const webpack = require('webpack');
 const PrettierPlugin = require('prettier-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const config = {
   entry: __dirname + '/src/index.jsx',
+  cache: false,
+  devtool: 'cheap-module-source-map',
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js',
@@ -37,10 +41,40 @@ const config = {
       }
     ]
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          mangle: true,
+          compress: {
+            warnings: false, // Suppress uglification warnings
+            pure_getters: true,
+            unsafe: true,
+            unsafe_comps: true,
+            ie8: true
+          },
+          output: {
+            comments: false,
+          },
+          exclude: [/\min\.js$/gi] // Skip already minified libraries
+        }
+      })
+    ]
+  },
   plugins: [
     new PrettierPlugin({
       extensions: [ '.js', '.jsx' ]
-    })
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+   /* new CompressionPlugin({
+      asset: '[path].qz[query]',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0
+    })*/
   ]
 };
 
