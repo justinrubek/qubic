@@ -1,12 +1,8 @@
-.content {
-  max-width: 800px;
-  margin: auto;
-}
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 40%;
+  float: left;
+  max-width: 320px;
 }
 
 .card:hover {
@@ -17,6 +13,6 @@
   width: 100%;
 }
 
-.card.container {
+.card div {
   padding: 2px 16px;
 }

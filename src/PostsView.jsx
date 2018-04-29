@@ -1,6 +1,8 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import card_styles from "./css/card.css";
+import style from "./css/postsview.css";
 
 function generatePosts(amount) {
   const posts = [];
@@ -14,7 +16,11 @@ function generatePosts(amount) {
 function generatePost(id) {
   return {
     id: id,
-    title: "Post " + id
+    title: "Post " + id,
+    author: "Justin Rubek",
+    datePublished: "yesterday",
+    shortcontent: "This is the story of how I saved Dimension " + id,
+    image: "https://i.imgur.com/xbKSm5n.png"
   };
 }
 
@@ -35,11 +41,16 @@ export default class PostsView extends React.Component {
     let postCards = posts.map(post => {
       let routeTo = "/posts/" + post.id;
       return (
-        <div>
-          <Link to={routeTo}>{post.title}</Link>
+        <div className={card_styles.card} key={post.id + post.datePublished}>
+          <img src={post.image} alt={"Post by " + post.author} />
+          <div>
+            <Link to={routeTo}>{post.title}</Link>
+
+            <p>{post.shortcontent}</p>
+          </div>
         </div>
       );
     });
-    return <div>{postCards}</div>;
+    return <div className={style.container}>{postCards}</div>;
   }
 }
