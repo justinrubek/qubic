@@ -4,7 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 const config = {
-  entry: __dirname + '/src/index.jsx',
+  entry: ['babel-polyfill', __dirname + '/src/index.jsx'],
   cache: false,
   devtool: 'cheap-module-source-map',
   output: {
@@ -53,8 +53,9 @@ const config = {
             pure_getters: true,
             unsafe: true,
             unsafe_comps: true,
-            ie8: true
+            ie8: false,
           },
+          sourceMap: true,
           output: {
             comments: false,
           },
