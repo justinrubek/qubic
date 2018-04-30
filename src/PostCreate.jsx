@@ -25,7 +25,7 @@ export default class PostCreate extends React.Component {
       post: {
         title: "",
         content: "",
-        author: "",
+        author: "Justin Rubek",
         datePosted: undefined
       },
       redirect: false

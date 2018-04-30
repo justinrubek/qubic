@@ -48,6 +48,7 @@ export default class App extends React.Component {
               <Route exact path="/" component={Home} />
               <Route path="/posts" component={Posts} />
               <Route path="/create" component={Create} />
+              <Route path="/404" component={NotFound} />
             </Switch>
           </div>
         </div>

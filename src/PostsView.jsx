@@ -55,7 +55,7 @@ export default class PostsView extends React.Component {
             className={card_styles.thumbnail}
           />
           <div className={card_styles.container}>
-            <Link className={card_styles.title} to={routeTo}>
+            <Link to={routeTo} className={card_styles.title}>
               {post.title}
             </Link>
           </div>
