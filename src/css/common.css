@@ -20,3 +20,7 @@
 .card.container {
   padding: 2px 16px;
 }
+
+.loading {
+  color: orange;
+}

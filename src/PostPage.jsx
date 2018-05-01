@@ -2,6 +2,8 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
+import { get, try_timeout } from "./utility";
+import common_styles from "./css/common.css";
 
 function generatePost(postId) {
   return {
@@ -12,31 +14,6 @@ function generatePost(postId) {
     date: new Date().toISOString()
   };
 }
-
-function get(url, options, timeout) {
-  options = options || {};
-  timeout = timeout || 5000;
-
-  return try_timeout(fetch(url, options), timeout);
-  /*
-  return Promise.race([
-    fetch(url, options),
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("Connection timed out")), timeout)
-    )
-  ]);
-*/
-}
-
-function try_timeout(prom, timeout) {
-  return Promise.race([
-    prom,
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("Timed out")), timeout)
-    )
-  ]);
-}
-
 // For now, we assume that each post has four properties
 // title, content, author, and datePosted
 // title and author being a string
@@ -82,7 +59,6 @@ export default class PostPage extends React.Component {
   render() {
     const { post, timeout, err } = this.state;
 
-    let redirect = null;
     if (timeout) {
       return <Redirect to="/404" />;
     }
@@ -90,12 +66,9 @@ export default class PostPage extends React.Component {
       return <Redirect to="/404" />;
     }
 
-    if (post === undefined) {
-      return timeout;
-    } else {
+    if (post != null) {
       return (
         <div>
-          {redirect}
           <h1>{post.title}</h1>
           <p>
             Posted {moment(post.date).format("D MMM YY")} by {post.author}
@@ -103,6 +76,8 @@ export default class PostPage extends React.Component {
           <ReactMarkdown source={post.content} />
         </div>
       );
+    } else {
+      return <div className={common_styles.loading} />;
     }
   }
 }
