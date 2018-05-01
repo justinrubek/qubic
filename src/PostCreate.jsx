@@ -1,12 +1,12 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { post as send_post, try_timeout } from "./utility";
 
 function generatePost(postId) {
   return {
     title: "Post " + postId,
     content: "I made this. You made this? I made this.",
-    author: "Justin Rubek",
-    datePosted: "today"
+    author: "Justin Rubek"
   };
 }
 
@@ -28,7 +28,7 @@ export default class PostCreate extends React.Component {
         author: "Justin Rubek",
         datePosted: undefined
       },
-      redirect: false
+      redirect: null
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -37,24 +37,38 @@ export default class PostCreate extends React.Component {
     this.createPost = this.createPost.bind(this);
   }
 
-  createPost() {
+  async createPost() {
     let today = new Date().toISOString();
     let post = this.state.post;
 
     let newPost = {
       title: post.title,
       content: post.content,
-      author: post.author,
-      datePosted: today
+      author: post.author
     };
 
     // Do something with newPost, probably
-    console.log("Attempting to create a new post.");
-    console.log("Post contents: ");
-    console.log(newPost);
+    const url = "/api/posts";
+    // Currently not doing anything with error, should push a message to the user
+    const response = await send_post(url, newPost).catch(err => {
+      console.log("Error in POST");
+      console.log(err);
+    });
+    const created = await try_timeout(response.json(), 5000).catch(err => {
+      console.log("Error parsing JSON");
+      console.log(err);
+    });
 
-    // Get url of new post and push to history
-    this.setState({ redirect: true });
+    if (created != null) {
+      console.log("Created");
+      console.log(created);
+
+      // This currently uses the value of redirect to redirect. I'm not sure
+      // if this is prefered over setting it in render
+      this.setState({ redirect: <Redirect to={"/posts/" + created.id} /> });
+    } else {
+      console.log("ruh-oh");
+    }
   }
 
   handleTitleChange(event) {
@@ -87,10 +101,6 @@ export default class PostCreate extends React.Component {
   render() {
     const { post, redirect } = this.state;
 
-    if (redirect === true) {
-      return <Redirect to="/posts" />;
-    }
-
     return (
       <div>
         <h1>Create new post</h1>
@@ -117,6 +127,7 @@ export default class PostCreate extends React.Component {
           />
           <button onClick={this.createPost}>Create Post</button>
         </div>
+        {redirect}
       </div>
     );
   }
