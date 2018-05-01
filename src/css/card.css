@@ -8,6 +8,7 @@
   top: 0;
   transition: top .6s ease;
   transition: box-shadow .4s ease-out;
+  border-radius: 4px;
 }
 
 .card:hover {
