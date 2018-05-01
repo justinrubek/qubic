@@ -40,11 +40,10 @@ export default class PostPage extends React.Component {
 
   async componentDidMount() {
     const id = this.state.postId;
-    const result = await get("/api/posts/" + id + ".json", {}, 5000).catch(
-      err => {
-        this.setState({ timeout: true });
-      }
-    );
+    const url = "/api/posts/" + id;
+    const result = await get(url, {}, 5000).catch(err => {
+      this.setState({ timeout: true });
+    });
     const post = await try_timeout(result.json(), 5000).catch(err => {
       // Bad return
       console.log(err);

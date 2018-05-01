@@ -38,9 +38,16 @@ export default class PostsView extends React.Component {
   }
 
   async componentDidMount() {
-    const url = "/api/posts/posts.json";
+    const url = "/api/posts";
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      }
+    };
 
-    const result = await get(url, {}, 5000).catch(err => {
+    const result = await get(url, options, 5000).catch(err => {
       this.setState({ timeout: true });
     });
 

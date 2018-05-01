@@ -1,7 +1,4 @@
-export function get(url, options, timeout) {
-  options = options || {};
-  timeout = timeout || 5000;
-
+export function get(url, options, timeout = 5000) {
   return try_timeout(fetch(url, options), timeout);
 }
 
