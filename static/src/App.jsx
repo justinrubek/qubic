@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, HashRouter, Redirect, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Redirect, Switch } from "react-router-dom";
 
 import common_styles from "./css/common.css";
 import styles from "./css/app.css";
@@ -39,7 +39,7 @@ export default class App extends React.Component {
     ];
 
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div className={styles.app}>
           <h1>Qube: qq</h1>
           <NavBar items={navItems} />
@@ -52,7 +52,7 @@ export default class App extends React.Component {
             </Switch>
           </div>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }

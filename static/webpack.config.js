@@ -2,13 +2,14 @@ const webpack = require('webpack');
 const PrettierPlugin = require('prettier-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const path = require("path");
 
 const config = {
   entry: ['babel-polyfill', __dirname + '/src/index.jsx'],
   cache: false,
   devtool: 'cheap-module-source-map',
   output: {
-    path: __dirname + '/dist',
+    path: path.join(__dirname, '..', "public"),
     filename: 'bundle.js',
   },
   resolve: {

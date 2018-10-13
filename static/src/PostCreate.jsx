@@ -65,7 +65,7 @@ export default class PostCreate extends React.Component {
 
       // This currently uses the value of redirect to redirect. I'm not sure
       // if this is prefered over setting it in render
-      this.setState({ redirect: <Redirect to={"/posts/" + created.id} /> });
+      this.setState({ redirect: <Redirect to={"/posts/" + created._id} /> });
     } else {
       console.log("ruh-oh");
     }
