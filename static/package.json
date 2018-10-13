@@ -1,16 +1,13 @@
 {
-  "name": "qubic",
-  "version": "0.0.0",
-  "main": "dist/bundle.js",
+  "name": "qubic-static",
+  "version": "0.1.0",
   "scripts": {
     "build": "webpack --mode development",
     "produce": "webpack --mode production",
-    "watch": "webpack --progress -d --config webpack.config.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Justin Rubek",
-  "license": "UNLICENSED",
-  "description": "Embrace the power of the qube",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "moment": "^2.22.1",

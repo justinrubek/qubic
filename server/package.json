@@ -1,11 +1,11 @@
 {
-  "name": "2traffic-server",
-  "version": "0.0.1",
+  "name": "qubic-server",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -s -d dist --presets env",
-    "start": "node dist/index.js",
+    "start": "node dist/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Justin Rubek <rubejus@bvu.edu>",

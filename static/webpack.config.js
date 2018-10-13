@@ -42,34 +42,11 @@ const config = {
       }
     ]
   },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        uglifyOptions: {
-          mangle: true,
-          compress: {
-            warnings: false, // Suppress uglification warnings
-            pure_getters: true,
-            unsafe: true,
-            unsafe_comps: true,
-            ie8: false,
-          },
-          sourceMap: true,
-          output: {
-            comments: false,
-          },
-          exclude: [/\min\.js$/gi] // Skip already minified libraries
-        }
-      })
-    ]
-  },
   plugins: [
     new PrettierPlugin({
       extensions: [ '.js', '.jsx' ]
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+//    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
    /* new CompressionPlugin({
       asset: '[path].qz[query]',
       algorithm: 'gzip',
